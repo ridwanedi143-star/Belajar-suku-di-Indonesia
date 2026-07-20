@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusantaraSuku Hub - Belajar Suku 38 Provinsi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navigasi Utama -->
+    <nav class="bg-gradient-to-r from-emerald-800 to-teal-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="bg-white text-emerald-800 p-2 rounded-xl shadow-inner">
+                        <i class="fa-solid fa-map-location-dot text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg tracking-wide block leading-none">NusantaraSuku</span>
+                        <span class="text-xs text-emerald-200">Hub Pembelajaran 38 Provinsi</span>
+                    </div>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-2">
+                    <button onclick="switchTab('home')" id="nav-home" class="px-3 py-2 rounded-lg text-sm font-medium bg-emerald-900/50 text-white transition">
+                        <i class="fa-solid fa-house mr-1"></i> Beranda
+                    </button>
+                    <button onclick="switchTab('materi')" id="nav-materi" class="px-3 py-2 rounded-lg text-sm font-medium text-emerald-100 hover:bg-emerald-900/30 transition">
+                        <i class="fa-solid fa-book-open mr-1"></i> Materi Suku
+                    </button>
+                    <button onclick="switchTab('flashcards')" id="nav-flashcards" class="px-3 py-2 rounded-lg text-sm font-medium text-emerald-100 hover:bg-emerald-900/30 transition">
+                        <i class="fa-solid fa-clone mr-1"></i> Kartu Pintar
+                    </button>
+                    <button onclick="switchTab('match')" id="nav-match" class="px-3 py-2 rounded-lg text-sm font-medium text-emerald-100 hover:bg-emerald-900/30 transition">
+                        <i class="fa-solid fa-puzzle-piece mr-1"></i> Cocok Suku
+                    </button>
+                    <button onclick="switchTab('kuis')" id="nav-kuis" class="px-3 py-2 rounded-lg text-sm font-medium text-emerald-100 hover:bg-emerald-900/30 transition">
+                        <i class="fa-solid fa-trophy mr-1"></i> Kuis
+                    </button>
+                    <button onclick="switchTab('generator')" id="nav-generator" class="px-3 py-2 rounded-lg text-sm font-medium text-emerald-100 hover:bg-emerald-900/30 transition">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Potret Suku AI
+                    </button>
+                    <button onclick="switchTab('chatbot')" id="nav-chatbot" class="px-3 py-2 rounded-lg text-sm font-medium text-emerald-100 hover:bg-emerald-900/30 transition">
+                        <i class="fa-solid fa-comments-dollar text-yellow-300 mr-1"></i> Tanya Guru AI
+                    </button>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-white hover:text-emerald-200 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-emerald-800 border-t border-emerald-700 px-2 pt-2 pb-4 space-y-1">
+            <button onclick="switchTab('home')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-900/40">Beranda</button>
+            <button onclick="switchTab('materi')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-900/40">Materi Suku</button>
+            <button onclick="switchTab('flashcards')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-900/40">Kartu Pintar</button>
+            <button onclick="switchTab('match')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-900/40">Cocok Suku</button>
+            <button onclick="switchTab('kuis')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-900/40">Kuis Nusantara</button>
+            <button onclick="switchTab('generator')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-900/40">Potret Suku AI</button>
+            <button onclick="switchTab('chatbot')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-emerald-900/40">Tanya Guru AI</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- TAB 1: HOME -->
+        <section id="tab-home" class="space-y-8 animate-fade-in">
+            <!-- Hero banner -->
+            <div class="relative bg-gradient-to-br from-teal-900 via-emerald-800 to-indigo-950 text-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold bg-emerald-500/20 text-emerald-300 rounded-full border border-emerald-500/30">
+                        <i class="fa-solid fa-star text-[10px]"></i> Edisi Terlengkap 38 Provinsi
+                    </span>
+                    <h1 class="serif-title text-4xl md:text-5xl font-extrabold leading-tight">
+                        Eksplorasi Keberagaman Suku Bangsa Indonesia!
+                    </h1>
+                    <p class="text-emerald-100 text-base md:text-lg">
+                        Mulai dari ujung barat Sabang hingga timur Merauke. Belajar budaya, adat istiadat, kuis seru, hingga visualisasi realistis wajah suku Indonesia menggunakan Generative AI tercanggih.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-4">
+                        <button onclick="switchTab('materi')" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-orange-500/20 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-map"></i> Mulai Belajar Suku
+                        </button>
+                        <button onclick="switchTab('chatbot')" class="bg-white/15 hover:bg-white/20 border border-white/20 text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-comment"></i> Konsultasi Guru AI
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ringkasan Statistik & Fitur Utama -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
+                    <div class="bg-emerald-50 text-emerald-600 p-4 rounded-xl">
+                        <i class="fa-solid fa-map-location text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-bold text-slate-800">38</span>
+                        <span class="text-sm text-slate-500 font-medium">Provinsi Terdata</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
+                    <div class="bg-amber-50 text-amber-600 p-4 rounded-xl">
+                        <i class="fa-solid fa-people-group text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-bold text-slate-800">1.340+</span>
+                        <span class="text-sm text-slate-500 font-medium">Suku di Indonesia</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
+                    <div class="bg-blue-50 text-blue-600 p-4 rounded-xl">
+                        <i class="fa-solid fa-wand-magic-sparkles text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-bold text-slate-800">Realistis</span>
+                        <span class="text-sm text-slate-500 font-medium">Potret Suku AI</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
+                    <div class="bg-rose-50 text-rose-600 p-4 rounded-xl">
+                        <i class="fa-solid fa-circle-check text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-bold text-slate-800">Interaktif</span>
+                        <span class="text-sm text-slate-500 font-medium">Ujian & Kuis Seru</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Petunjuk Penggunaan -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h2 class="serif-title text-2xl font-bold text-slate-800">Bagaimana Cara Belajar di Sini?</h2>
+                    <p class="text-slate-500 text-sm">Pilih jalur petualangan belajarmu secara mandiri</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 rounded-2xl bg-slate-50 hover:bg-slate-100/70 transition border border-transparent hover:border-slate-100 space-y-3 cursor-pointer" onclick="switchTab('materi')">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">1</div>
+                        <h3 class="font-bold text-slate-800">Baca Materi Terstruktur</h3>
+                        <p class="text-xs text-slate-500">Pelajari detail suku, baju adat, rumah adat, dan daerah asal dari seluruh 38 provinsi di Indonesia.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-slate-50 hover:bg-slate-100/70 transition border border-transparent hover:border-slate-100 space-y-3 cursor-pointer" onclick="switchTab('flashcards')">
+                        <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold">2</div>
+                        <h3 class="font-bold text-slate-800">Asah Memori Visual</h3>
+                        <p class="text-xs text-slate-500">Gunakan Kartu Pintar (Flashcards) dan game Mencocokkan Suku untuk melatih memori jangka pendekmu.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-slate-50 hover:bg-slate-100/70 transition border border-transparent hover:border-slate-100 space-y-3 cursor-pointer" onclick="switchTab('kuis')">
+                        <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold">3</div>
+                        <h3 class="font-bold text-slate-800">Uji Kemampuan & Kuis</h3>
+                        <p class="text-xs text-slate-500">Tantang dirimu dengan kuis interaktif berwaktu, kumpulkan skor sempurna, dan raih sertifikat digital lokal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MATERI -->
+        <section id="tab-materi" class="hidden space-y-6 animate-fade-in">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+                <div>
+                    <h2 class="serif-title text-3xl font-bold text-slate-800">Eksplorasi Budaya Suku Nusantara</h2>
+                    <p class="text-slate-500 text-sm">Pilih dan telusuri kekayaan 38 Provinsi di Indonesia.</p>
+                </div>
+                <!-- Search & Filter -->
+                <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                    <div class="relative flex-grow">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="materi-search" oninput="filterProvinces()" placeholder="Cari provinsi, suku, pulau..." class="pl-10 pr-4 py-2 w-full border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+                    </div>
+                    <select id="materi-filter-pulau" onchange="filterProvinces()" class="px-4 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="Semua">Semua Wilayah</option>
+                        <option value="Sumatra">Sumatra</option>
+                        <option value="Jawa">Jawa</option>
+                        <option value="Nusa Tenggara & Bali">Bali & Nusa Tenggara</option>
+                        <option value="Kalimantan">Kalimantan</option>
+                        <option value="Sulawesi">Sulawesi</option>
+                        <option value="Maluku">Maluku</option>
+                        <option value="Papua">Papua</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Layout Materi: Samping kiri daftar kartu, samping kanan detail terpilih -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Samping Kiri: Daftar Provinsi (Scrollable) -->
+                <div class="lg:col-span-5 space-y-3 max-h-[600px] overflow-y-auto pr-2" id="province-list-container">
+                    <!-- Cards will be dynamically rendered here via Javascript -->
+                </div>
+
+                <!-- Samping Kanan: Panel Detail Suku Terpilih -->
+                <div class="lg:col-span-7" id="province-detail-container">
+                    <!-- Detail view will be rendered dynamically here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: FLASHCARDS -->
+        <section id="tab-flashcards" class="hidden space-y-6 animate-fade-in">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <h2 class="serif-title text-3xl font-bold text-slate-800">Kartu Pintar Nusantara</h2>
+                <p class="text-slate-500 text-sm">Uji kecepatan ingatanmu! Klik kartu untuk membalikkan jawaban dan membaca detail suku bangsa serta rumah adat provinsi terpilih.</p>
+            </div>
+
+            <div class="max-w-md mx-auto space-y-6">
+                <!-- Flashcard container with 3D flip effect -->
+                <div class="relative w-full h-80 cursor-pointer" onclick="toggleFlashcard()" style="perspective: 1000px;">
+                    <div id="flashcard-inner" class="relative w-full h-full text-center transition-transform duration-500 transform-style-3d shadow-xl rounded-3xl" style="transform-style: preserve-3d;">
+                        
+                        <!-- Front Face -->
+                        <div class="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-emerald-700 to-teal-900 text-white flex flex-col justify-between p-8" style="backface-visibility: hidden;">
+                            <div class="flex justify-between items-center text-emerald-200">
+                                <span class="text-xs uppercase tracking-wider font-bold">Provinsi</span>
+                                <i class="fa-solid fa-question-circle text-lg"></i>
+                            </div>
+                            <div class="space-y-3 my-auto">
+                                <p class="text-sm text-emerald-100 font-semibold tracking-wide" id="fc-island"></p>
+                                <h3 class="serif-title text-3xl font-extrabold" id="fc-province">Provinsi Contoh</h3>
+                                <p class="text-xs text-emerald-200 bg-white/10 py-1.5 px-4 rounded-full inline-block">Klik untuk melihat suku utama</p>
+                            </div>
+                            <div class="text-xs text-emerald-300 flex justify-between" id="fc-progress-front">
+                                <span>Kartu 1 dari 38</span>
+                                <span>Balik <i class="fa-solid fa-arrow-rotate-right ml-1"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Back Face -->
+                        <div class="absolute inset-0 w-full h-full rounded-3xl bg-white border-2 border-emerald-500 flex flex-col justify-between p-8 text-slate-800" style="backface-visibility: hidden; transform: rotateY(180deg);">
+                            <div class="flex justify-between items-center text-slate-400">
+                                <span class="text-xs uppercase tracking-wider font-bold text-emerald-600">Suku & Adat Terungkap!</span>
+                                <i class="fa-solid fa-circle-check text-lg text-emerald-500"></i>
+                            </div>
+                            <div class="my-auto space-y-4">
+                                <div class="space-y-1">
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-wide block">Suku Utama</span>
+                                    <h4 class="text-2xl font-bold text-slate-800" id="fc-suku">Suku Contoh</h4>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 pt-2">
+                                    <div class="bg-slate-50 p-2 rounded-xl text-left">
+                                        <span class="text-[10px] text-slate-400 block">Rumah Adat</span>
+                                        <span class="text-xs font-semibold text-slate-700" id="fc-rumah">Rumah</span>
+                                    </div>
+                                    <div class="bg-slate-50 p-2 rounded-xl text-left">
+                                        <span class="text-[10px] text-slate-400 block">Pakaian Adat</span>
+                                        <span class="text-xs font-semibold text-slate-700" id="fc-pakaian">Pakaian</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-slate-400 flex justify-between" id="fc-progress-back">
+                                <span>Kartu 1 dari 38</span>
+                                <span>Kembali <i class="fa-solid fa-arrow-rotate-right ml-1"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex items-center justify-between gap-4">
+                    <button onclick="prevFlashcard()" class="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition shadow-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Sebelumnya
+                    </button>
+                    <button onclick="shuffleFlashcards()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-xl transition shadow-sm" title="Acak Kartu">
+                        <i class="fa-solid fa-shuffle text-sm"></i> Acak
+                    </button>
+                    <button onclick="nextFlashcard()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition shadow-lg shadow-emerald-600/10">
+                        Selanjutnya <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: COCOK SUKU (MATCH GAME) -->
+        <section id="tab-match" class="hidden space-y-6 animate-fade-in">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <h2 class="serif-title text-3xl font-bold text-slate-800">Cari Pasangan Suku</h2>
+                <p class="text-slate-500 text-sm">Hubungkan/pilih nama Suku di sebelah kiri dengan nama Provinsi asalnya di sebelah kanan secara tepat!</p>
+            </div>
+
+            <!-- Game Board -->
+            <div class="max-w-3xl mx-auto bg-white border border-slate-100 shadow-sm p-6 rounded-3xl space-y-6">
+                <!-- Info & Score -->
+                <div class="flex justify-between items-center bg-emerald-50 border border-emerald-100 p-3 rounded-xl text-emerald-800 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad text-base"></i>
+                        <span class="font-medium">Mencocokkan Suku</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <span>Skor: <strong id="match-score">0</strong>/5</span>
+                        <span>Sisa Nyawa: <span id="match-lives" class="text-red-500 font-bold"><i class="fa-solid fa-heart"></i> <i class="fa-solid fa-heart"></i> <i class="fa-solid fa-heart"></i></span></span>
+                    </div>
+                </div>
+
+                <!-- Match Blocks Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                    <!-- Column 1: Suku (Left Selection) -->
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2 text-center">Pilih Suku Bangsa</h4>
+                        <div id="match-left-column" class="space-y-2">
+                            <!-- Injected JS -->
+                        </div>
+                    </div>
+                    <!-- Column 2: Provinsi (Right Selection) -->
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-2 text-center">Pilih Provinsi Asal</h4>
+                        <div id="match-right-column" class="space-y-2">
+                            <!-- Injected JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game status alert banner -->
+                <div id="match-status" class="hidden p-4 rounded-xl text-center text-sm font-semibold transition-all"></div>
+
+                <!-- Action Button -->
+                <div class="text-center pt-2">
+                    <button onclick="initMatchGame()" class="bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white text-sm font-semibold px-6 py-2.5 rounded-xl shadow-md transition">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Mulai Ulang Permainan
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: KUIS -->
+        <section id="tab-kuis" class="hidden space-y-6 animate-fade-in">
+            <!-- Start / Welcome Screen -->
+            <div id="quiz-start-screen" class="max-w-xl mx-auto bg-white border border-slate-100 shadow-sm p-8 rounded-3xl text-center space-y-6">
+                <div class="w-16 h-16 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-3xl mx-auto shadow-inner">
+                    <i class="fa-solid fa-trophy animate-bounce"></i>
+                </div>
+                <div class="space-y-2">
+                    <h2 class="serif-title text-3xl font-bold text-slate-800">Kuis Evaluasi Budaya</h2>
+                    <p class="text-slate-500 text-sm">Uji seberapa dalam kamu menguasai suku-suku di 38 Provinsi Indonesia. Selesaikan kuis ini untuk meraih predikat Ahli Budaya Nusantara!</p>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-4 text-left space-y-2 text-xs text-slate-600">
+                    <p class="font-semibold text-slate-700 mb-1"><i class="fa-solid fa-circle-info mr-1 text-amber-500"></i> Ketentuan Kuis:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Jumlah soal: 10 pertanyaan pilihan ganda pilihan acak.</li>
+                        <li>Waktu pengerjaan per soal: 25 detik.</li>
+                        <li>Dapatkan bonus poin apabila menjawab secara cepat!</li>
+                    </ul>
+                </div>
+
+                <button onclick="startQuiz()" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold py-3 rounded-xl shadow-lg shadow-orange-500/10 transition transform hover:-translate-y-0.5">
+                    Mulai Ujian Sekarang <i class="fa-solid fa-circle-play ml-1"></i>
+                </button>
+            </div>
+
+            <!-- Active Play Screen -->
+            <div id="quiz-play-screen" class="hidden max-w-2xl mx-auto bg-white border border-slate-100 shadow-sm p-6 md:p-8 rounded-3xl space-y-6">
+                <!-- Header Status -->
+                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div>
+                        <span class="text-xs font-semibold text-emerald-600 uppercase tracking-widest">Kuis Budaya Nusantara</span>
+                        <h4 class="text-sm font-bold text-slate-700" id="quiz-question-counter">Soal 1 dari 10</h4>
+                    </div>
+                    <!-- Timer -->
+                    <div class="flex items-center gap-2 bg-rose-50 text-rose-600 px-3 py-1.5 rounded-xl font-bold text-sm">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                        <span id="quiz-timer">25</span>s
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                    <div id="quiz-progress-bar" class="bg-gradient-to-r from-emerald-500 to-teal-600 h-full w-[10%] transition-all duration-300"></div>
+                </div>
+
+                <!-- Question Prompt -->
+                <div class="space-y-4">
+                    <p class="text-lg font-bold text-slate-800 leading-relaxed" id="quiz-question-text">
+                        Suku apakah yang merupakan suku asli yang mendiami wilayah Provinsi Daerah Istimewa Yogyakarta?
+                    </p>
+                </div>
+
+                <!-- Options -->
+                <div class="grid grid-cols-1 gap-3 pt-2" id="quiz-options-container">
+                    <!-- Option buttons will be injected here -->
+                </div>
+
+                <!-- Feedbacks -->
+                <div id="quiz-explanation-banner" class="hidden p-4 rounded-xl text-sm transition-all flex items-start gap-3">
+                    <span id="quiz-explanation-icon" class="text-xl"></span>
+                    <div>
+                        <p class="font-bold" id="quiz-explanation-title"></p>
+                        <p class="text-xs text-slate-600 mt-0.5" id="quiz-explanation-text"></p>
+                    </div>
+                </div>
+
+                <!-- Next Control -->
+                <div class="flex justify-end pt-2">
+                    <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+                        Pertanyaan Berikutnya <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Score Screen -->
+            <div id="quiz-result-screen" class="hidden max-w-xl mx-auto bg-white border border-slate-100 shadow-sm p-8 rounded-3xl text-center space-y-6">
+                <div class="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center text-4xl mx-auto shadow-inner border-4 border-white">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div class="space-y-2">
+                    <h2 class="serif-title text-3xl font-bold text-slate-800" id="quiz-result-greeting">Luar Biasa!</h2>
+                    <p class="text-slate-500 text-sm">Kamu telah merampungkan kuis uji pengetahuan suku nusantara.</p>
+                </div>
+
+                <!-- Score Board Card -->
+                <div class="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-2xl p-6 border border-slate-150 grid grid-cols-2 gap-4">
+                    <div class="border-r border-slate-200">
+                        <span class="text-xs text-slate-400 uppercase tracking-wide block">Skor Akhir</span>
+                        <span class="text-4xl font-extrabold text-slate-800" id="quiz-final-score">90</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-wide block">Benar / Salah</span>
+                        <span class="text-xl font-bold text-slate-700" id="quiz-correct-incorrect">9 / 1</span>
+                    </div>
+                </div>
+
+                <!-- Predicate Medal Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 rounded-xl border border-amber-200 text-sm font-semibold">
+                    <i class="fa-solid fa-medal"></i> Predikat: <span id="quiz-badge">Ahli Utama Nusantara</span>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="startQuiz()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl shadow-md transition">
+                        Coba Lagi <i class="fa-solid fa-rotate-right ml-1"></i>
+                    </button>
+                    <button onclick="switchTab('materi')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 rounded-xl transition">
+                        Pelajari Materi Lagi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: AI GENERATOR (Imagen 4.0 Integration) -->
+        <section id="tab-generator" class="hidden space-y-6 animate-fade-in">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <h2 class="serif-title text-3xl font-bold text-slate-800">Visualisasi Realistis Suku AI</h2>
+                <p class="text-slate-500 text-sm">Hasilkan potret realistis masyarakat suku-suku Indonesia lengkap dengan pakaian adat dan latar belakang daerahnya secara real-time menggunakan **Imagen 4.0**.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
+                <!-- Left Control Form -->
+                <div class="lg:col-span-5 bg-white p-6 border border-slate-100 shadow-sm rounded-3xl space-y-4">
+                    <h3 class="font-bold text-slate-800 flex items-center gap-2 border-b border-slate-100 pb-3">
+                        <i class="fa-solid fa-sliders text-emerald-600"></i> Kustomisasi Potret
+                    </h3>
+
+                    <!-- Select Province -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-600">Pilih Provinsi:</label>
+                        <select id="gen-provinsi" onchange="updateGenSukuOptions()" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <!-- Injected dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Select Suku -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-600">Pilih Suku Utama:</label>
+                        <select id="gen-suku" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <!-- Injected dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Gender/Character Style -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-600">Gaya Potret:</label>
+                        <select id="gen-gender" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="pria paruh baya yang gagah dan berwibawa">Pria Adat Gagah</option>
+                            <option value="wanita muda anggun yang tersenyum ramah">Wanita Adat Anggun</option>
+                            <option value="pasangan pengantin mengenakan pakaian adat pernikahan tradisional lengkap">Sepasang Pengantin Adat</option>
+                            <option value="tetua adat bijaksana dengan ornamen tradisional yang penuh kharisma">Tetua Adat Berkarisma</option>
+                        </select>
+                    </div>
+
+                    <!-- Background settings -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-semibold text-slate-600">Latar Belakang:</label>
+                        <select id="gen-bg" class="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="latar rumah adat tradisional khas daerah tersebut yang autentik">Rumah Adat Asli</option>
+                            <option value="latar pemandangan alam indah pegunungan hijau khas nusantara">Pemandangan Alam Indah</option>
+                            <option value="latar studio pencahayaan potret profesional dramatis, terfokus pada subjek">Studio Potret Dramatis</option>
+                        </select>
+                    </div>
+
+                    <!-- Prompt Preview -->
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-150 space-y-1">
+                        <span class="text-[10px] uppercase font-bold text-slate-400 block">Prompt AI yang Terbentuk</span>
+                        <p id="gen-prompt-preview" class="text-xs text-slate-600 italic">Memuat pratinjau prompt...</p>
+                    </div>
+
+                    <!-- Action Button -->
+                    <button onclick="generateSukuImage()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-850 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-emerald-600/10 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Hasilkan Gambar Realistis
+                    </button>
+                </div>
+
+                <!-- Right Visual Viewport -->
+                <div class="lg:col-span-7 bg-white p-6 border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between min-h-[450px]">
+                    <div class="relative flex-grow flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 overflow-hidden" id="gen-canvas-container">
+                        <!-- Default empty state -->
+                        <div id="gen-empty-state" class="text-center p-8 space-y-3">
+                            <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-slate-700 text-sm">Visual Suku Belum Dihasilkan</h4>
+                                <p class="text-xs text-slate-400 max-w-xs mx-auto">Tentukan kustomisasi di panel kiri lalu tekan tombol "Hasilkan" untuk melukis potret realis AI.</p>
+                            </div>
+                        </div>
+
+                        <!-- Loading overlay -->
+                        <div id="gen-loading-state" class="hidden absolute inset-0 bg-white/90 flex flex-col items-center justify-center space-y-4">
+                            <div class="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                            <div class="text-center space-y-1 z-10 px-6">
+                                <h4 id="gen-loading-title" class="font-bold text-slate-800 text-sm">Kecerdasan Buatan Melukis Potret...</h4>
+                                <p id="gen-loading-desc" class="text-xs text-slate-500 max-w-sm">Mengeksekusi model generator gambar realis Imagen 4.0. Harap tunggu beberapa detik.</p>
+                            </div>
+                        </div>
+
+                        <!-- Main Image display -->
+                        <img id="gen-result-img" class="hidden w-full h-full object-cover rounded-2xl" src="" alt="Hasil Potret Suku AI">
+                    </div>
+
+                    <!-- Description Card below image -->
+                    <div class="mt-4 bg-slate-50 p-4 rounded-xl border border-slate-150 space-y-2 hidden" id="gen-detail-card">
+                        <h4 class="font-bold text-slate-800 text-sm flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-600"></i> Representasi Visual Sukses Terbentuk
+                        </h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Potret di atas merupakan visualisasi artistik yang disesuaikan dengan deskripsi baju adat, struktur wajah khas, serta latar belakang budaya suku tersebut berdasarkan input AI.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 7: CHATBOT (Guru AI Nusantara) -->
+        <section id="tab-chatbot" class="hidden space-y-6 animate-fade-in">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <h2 class="serif-title text-3xl font-bold text-slate-800">Konsultasi Guru Nusantara AI</h2>
+                <p class="text-slate-500 text-sm">Ajukan pertanyaan spesifik apa saja seputar suku bangsa, tradisi, tarian, adat istiadat, atau asal-usul budaya di seluruh Indonesia kepada Guru AI kami yang ramah.</p>
+            </div>
+
+            <!-- Chat Container Box -->
+            <div class="max-w-4xl mx-auto bg-white border border-slate-100 shadow-sm rounded-3xl overflow-hidden flex flex-col h-[550px]">
+                <!-- Chat Header -->
+                <div class="bg-gradient-to-r from-emerald-800 to-teal-700 px-6 py-4 flex items-center gap-3 text-white">
+                    <div class="w-10 h-10 bg-white/20 border border-white/20 rounded-full flex items-center justify-center text-xl shadow-inner">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold leading-tight">Guru Ayu Nusantara</h3>
+                        <span class="text-xs text-emerald-200 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Siap Menjawab Budaya</span>
+                    </div>
+                </div>
+
+                <!-- Message Body -->
+                <div id="chatbot-message-container" class="flex-grow p-6 overflow-y-auto space-y-4 bg-slate-50">
+                    <!-- Standard Welcome Message -->
+                    <div class="flex items-start gap-3 max-w-xl">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            GA
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-150 shadow-sm text-sm text-slate-700 space-y-1.5">
+                            <p>Sampurasun! Halo adik-adik sekalian. Saya adalah <strong>Guru Ayu Nusantara</strong>. 😊</p>
+                            <p>Saya menguasai materi dari seluruh 38 provinsi di Indonesia, termasuk suku bangsa, bahasa daerah, pakaian, tarian, hingga sejarahnya. Silakan tanyakan apa saja yang ingin kamu ketahui!</p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <button onclick="quickChat('Ceritakan sejarah Suku Dayak')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 transition">Suku Dayak</button>
+                                <button onclick="quickChat('Apa ciri khas Suku Dani di Papua?')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 transition">Suku Dani Papua</button>
+                                <button onclick="quickChat('Apa bedanya Suku Sunda dengan Suku Baduy?')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 transition">Sunda vs Baduy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input Panel -->
+                <div class="border-t border-slate-100 p-4 bg-white">
+                    <form id="chatbot-form" onsubmit="handleChatSubmit(event)" class="flex gap-2">
+                        <input type="text" id="chatbot-input" placeholder="Tanyakan ke Guru Ayu... (misal: Suku apa yang ada di Provinsi Maluku?)" class="flex-grow px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-semibold flex items-center gap-1.5 shadow-md transition">
+                            Kirim <i class="fa-solid fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-semibold text-white">NusantaraSuku Hub &copy; 2026</p>
+                <p class="text-xs text-slate-500 mt-1">Sistem visualisasi AI 38 Provinsi Nusantara. Cerdas, Kreatif & Berbudaya.</p>
+            </div>
+            <div class="flex gap-4 text-sm">
+                <a href="#" class="hover:text-emerald-400 transition">Eksplorasi</a>
+                <a href="#" class="hover:text-emerald-400 transition">Kuis</a>
+                <a href="#" class="hover:text-emerald-400 transition">Bantuan</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Database Suku & Budaya Lengkap 38 Provinsi di Indonesia
+        const PROVINCES_DATA = [
+            // --- SUMATRA ---
+            {
+                id: "aceh",
+                nama: "Aceh",
+                ibukota: "Banda Aceh",
+                pulau: "Sumatra",
+                suku: "Aceh, Gayo, Alas, Tamiang, Kluet",
+                rumah: "Rumoh Aceh (Krong Bade)",
+                pakaian: "Ulee Balang",
+                deskripsi: "Provinsi paling barat Indonesia yang berjuluk Serambi Mekkah. Suku Aceh kaya akan sejarah Islam dengan tarian tradisional Saman dan Seudati yang mendunia.",
+                detailSuku: "Suku Aceh merupakan salah satu suku terbesar di wilayah ini. Terdapat juga Suku Gayo di dataran tinggi yang terkenal dengan kopi khas Gayo serta tari saman yang sarat dengan kekompakan dan harmoni religi."
+            },
+            {
+                id: "sumut",
+                nama: "Sumatra Utara",
+                ibukota: "Medan",
+                pulau: "Sumatra",
+                suku: "Batak (Toba, Karo, Mandailing, Simalungun, Pakpak), Nias, Melayu",
+                rumah: "Ruma Bolon",
+                pakaian: "Ulos",
+                deskripsi: "Daerah dengan keunikan suku Batak dan budaya megalitik Pulau Nias (Lompat Batu Fahombo). Danau Toba menjadi pusat legenda peradaban Batak.",
+                detailSuku: "Suku Batak memiliki sistem kekerabatan marga yang kuat. Suku Nias di pulau barat Sumatra memiliki kebudayaan yang unik seperti lompat batu raksasa dan arsitektur rumah tahan gempa Omo Hada."
+            },
+            {
+                id: "sumbar",
+                nama: "Sumatra Barat",
+                ibukota: "Padang",
+                pulau: "Sumatra",
+                suku: "Minangkabau, Mentawai",
+                rumah: "Rumah Gadang",
+                pakaian: "Bundo Kanduang / Limpapeh Rumah Nan Gadang",
+                deskripsi: "Terkenal dengan sistem kekerabatan Matrilineal (garis keturunan ibu) terbesar di dunia, masakan rendang yang lezat, serta arsitektur atap gonjong.",
+                detailSuku: "Suku Minangkabau mengedepankan musyawarah mufakat dan adat bersendikan syariat Islam. Suku Mentawai di Kepulauan Mentawai terkenal dengan tato tertua di dunia dan hubungan yang harmoni dengan alam liar."
+            },
+            {
+                id: "riau",
+                nama: "Riau",
+                ibukota: "Pekanbaru",
+                pulau: "Sumatra",
+                suku: "Melayu, Sakai, Akik, Hutan",
+                rumah: "Selaso Jatuh Kembar",
+                pakaian: "Kebaya Laboh & Baju Kurung",
+                deskripsi: "Pusat kebudayaan Melayu yang kaya akan karya sastra pantun dan gurindam dua belas. Merupakan provinsi kaya minyak bumi.",
+                detailSuku: "Suku Melayu Riau memegang peranan besar dalam sejarah pembentukan bahasa Indonesia baku. Suku Sakai hidup di daerah pedalaman hutan daratan Riau dengan kearifan lokal berburu yang ramah lingkungan."
+            },
+            {
+                id: "kepri",
+                nama: "Kepulauan Riau",
+                ibukota: "Tanjungpinang",
+                pulau: "Sumatra",
+                suku: "Melayu, Laut, Bugis, Tionghoa",
+                rumah: "Rumah Belah Bubat",
+                pakaian: "Kebaya Kebaya Laboh",
+                deskripsi: "Provinsi kepulauan strategis di Selat Malaka. Terkenal dengan Pulau Penyengat sebagai pusat pengembangan bahasa Melayu modern.",
+                detailSuku: "Suku Laut (Suku Sampan) mendominasi wilayah perairan maritim kepulauan ini sejak berabad-abad silam, hidup nomaden di atas perahu tradisional, serta ahli bernavigasi bintang."
+            },
+            {
+                id: "jambi",
+                nama: "Jambi",
+                ibukota: "Jambi",
+                pulau: "Sumatra",
+                suku: "Melayu, Kerinci, Anak Dalam (Kubu)",
+                rumah: "Kajang Leko",
+                pakaian: "Baju Kurung Tanggung",
+                deskripsi: "Terkenal dengan Situs Candi Muaro Jambi yang luas serta kehidupan Suku Anak Dalam di belantara hutan belantara Sumatra.",
+                detailSuku: "Suku Anak Dalam (Suku Kubu) merupakan kelompok masyarakat adat marginal yang hidup di hutan Jambi, mempertahankan tradisi nomaden berburu-meramu, dan sangat menghormati hutan adat."
+            },
+            {
+                id: "sumsel",
+                nama: "Sumatra Selatan",
+                ibukota: "Palembang",
+                pulau: "Sumatra",
+                suku: "Komering, Palembang, Pasemah, Semendo, Ogan",
+                rumah: "Rumah Limas",
+                pakaian: "Aesan Gede",
+                deskripsi: "Warisan kemegahan Kerajaan Sriwijaya, pusat perdagangan maritim kuno, dengan kuliner ikonik Pempek dan Jembatan Ampera.",
+                detailSuku: "Suku Palembang terbagi atas golongan bangsawan (Wong Jeroo) dan masyarakat biasa (Wong Jabo) dengan tradisi tenun songket sutra emas bernilai seni sangat tinggi."
+            },
+            {
+                id: "babel",
+                nama: "Kepulauan Bangka Belitung",
+                ibukota: "Pangkalpinang",
+                pulau: "Sumatra",
+                suku: "Bangka, Belitung, Lom, Tionghoa (Hakka)",
+                rumah: "Rumah Panggung Melayu Bangka",
+                pakaian: "Paksian",
+                deskripsi: "Penghasil timah terbesar dan negeri Laskar Pelangi dengan pantai eksotis bertabur batu granit raksasa berpasir putih.",
+                detailSuku: "Suku Melayu Bangka hidup berdampingan secara sangat harmonis dengan warga etnis Tionghoa Hakka sejak ratusan tahun lalu, menciptakan asimilasi budaya kuliner dan bahasa daerah yang ramah."
+            },
+            {
+                id: "bengkulu",
+                nama: "Bengkulu",
+                ibukota: "Bengkulu",
+                pulau: "Sumatra",
+                suku: "Rejang, Serawai, Enggano, Kaur",
+                rumah: "Rumah Bubungan Lima",
+                pakaian: "Baju Adat Bengkulu (Rejang Lebong)",
+                deskripsi: "Bumi Rafflesia Arnoldii dengan situs sejarah benteng kolonial Inggris Fort Marlborough terbesar di Asia Tenggara.",
+                detailSuku: "Suku Rejang adalah suku tertua di Bengkulu yang memiliki aksara kuno tulisan Kaganga. Suku Enggano hidup menyendiri di pulau terluar Samudra Hindia dengan hukum adat klan matrilineal."
+            },
+            {
+                id: "lampung",
+                nama: "Lampung",
+                ibukota: "Bandar Lampung",
+                pulau: "Sumatra",
+                suku: "Lampung (Pepadun & Saibatin)",
+                rumah: "Nuwo Sesat",
+                pakaian: "Siger",
+                deskripsi: "Gerbang utama pulau Sumatra dari Jawa. Memiliki tradisi budaya kain tapis dengan sulaman benang emas yang mewah.",
+                detailSuku: "Suku Lampung Pepadun hidup di daerah pedalaman dengan adat demokratis musyawarah, sementara Suku Lampung Saibatin hidup di daerah pesisir yang mengikuti hierarki aristokrat kekerabatan adat."
+            },
+
+            // --- JAWA ---
+            {
+                id: "banten",
+                nama: "Banten",
+                ibukota: "Serang",
+                pulau: "Jawa",
+                suku: "Banten, Baduy (Kanekes)",
+                rumah: "Sulah Nyanda",
+                pakaian: "Baju Pangsi (Baduy: Jamang Sangsang)",
+                deskripsi: "Terkenal dengan atraksi debus yang ekstrem, serta Suku Baduy yang sangat teguh menolak modernitas demi melestarikan alam.",
+                detailSuku: "Suku Baduy (Urung Kanekes) terbagi menjadi Baduy Dalam yang melarang penggunaan teknologi modern dan alas kaki, dan Baduy Luar yang lebih terbuka dengan kehidupan luar namun tetap memegang teguh hukum adat Pikukuh."
+            },
+            {
+                id: "jakarta",
+                nama: "DKI Jakarta",
+                ibukota: "Jakarta",
+                pulau: "Jawa",
+                suku: "Betawi",
+                rumah: "Rumah Kebaya",
+                pakaian: "Sadariah & Kebaya Encim",
+                deskripsi: "Metropolitan megapolitan yang dihuni multi-etnis, dengan Suku Betawi sebagai penduduk asli yang ramah, humoris, dan sarat kesenian Ondel-ondel.",
+                detailSuku: "Suku Betawi terbentuk dari asimilasi berbagai suku nusantara (Melayu, Jawa, Sunda) dan asing (Arab, Tionghoa, Eropa). Kesenian khasnya antara lain Lenong, Tanjidor, dan musik Gambang Kromong."
+            },
+            {
+                id: "jabar",
+                nama: "Jawa Barat",
+                ibukota: "Bandung",
+                pulau: "Jawa",
+                suku: "Sunda",
+                rumah: "Imah Badak Heuay / Julang Ngapak",
+                pakaian: "Sukapura / Kebaya Sunda",
+                deskripsi: "Bumi Parahyangan yang subur, dihuni suku Sunda yang terkenal ramah dengan musik bambu Angklung serta tarian dinamis Jaipongan.",
+                detailSuku: "Suku Sunda adalah suku terbesar kedua di Indonesia. Memiliki tradisi lisan luhur, sastra pantun Sunda, dan filosofi hidup 'Silih Asih, Silih Asah, Silih Asuh' (Saling mengasihi, mengasah, mengasuh)."
+            },
+            {
+                id: "jateng",
+                nama: "Jawa Tengah",
+                ibukota: "Semarang",
+                pulau: "Jawa",
+                suku: "Jawa",
+                rumah: "Padepokan Joglo Jateng",
+                pakaian: "Kebaya & Jawi Jangkep",
+                deskripsi: "Pusat peradaban luhur Jawa, dikelilingi candi Borobudur dan Prambanan, dengan warisan seni Wayang Kulit dan Gamelan.",
+                detailSuku: "Suku Jawa mengedepankan etika keselarasan hidup, tata krama bahasa berjenjang (Krama, Madya, Ngoko), serta kerajinan batik tulis pusaka dunia."
+            },
+            {
+                id: "diy",
+                nama: "DI Yogyakarta",
+                ibukota: "Yogyakarta",
+                pulau: "Jawa",
+                suku: "Jawa",
+                rumah: "Bangsal Kencono Joglo",
+                pakaian: "Surjan & Kebaya Tangkepan",
+                deskripsi: "Provinsi istimewa berbentuk kesultanan kerajaan yang melestarikan warisan keraton Jawa secara hidup di tengah era modernisasi.",
+                detailSuku: "Masyarakat Jawa di Yogyakarta terkenal dengan nilai gotong royong tinggi, kerajinan perak Kotagede, tradisi upacara adat Grebeg, serta kuliner manis gudeg."
+            },
+            {
+                id: "jatim",
+                nama: "Jawa Timur",
+                ibukota: "Surabaya",
+                pulau: "Jawa",
+                suku: "Jawa, Madura, Tengger, Osing",
+                rumah: "Joglo Situbondo",
+                pakaian: "Pesa'an",
+                deskripsi: "Bumi petualangan vulkanik Gunung Bromo yang mistis dan pahlawan arek-arek Suroboyo. Kaya akan variasi kesenian Reog Ponorogo.",
+                detailSuku: "Selain Suku Jawa, ada Suku Osing di Banyuwangi yang berdialek khas kuno, Suku Tengger penjaga Gunung Bromo yang memeluk agama Hindu, dan Suku Madura yang ulet dan berani."
+            },
+
+            // --- BALI & NUSA TENGGARA ---
+            {
+                id: "bali",
+                nama: "Bali",
+                ibukota: "Denpasar",
+                pulau: "Nusa Tenggara & Bali",
+                suku: "Bali",
+                rumah: "Gapura Candi Bentar",
+                pakaian: "Payas Agung",
+                deskripsi: "Pulau Dewata destinasi wisata nomor satu dunia. Kebudayaan Hindu Bali yang eksotis bertahan sangat kuat lewat tarian kecak, ritual ngaben, dan sistem subak.",
+                detailSuku: "Suku Bali memiliki organisasi adat Banjar dan upacara keagamaan yang semarak. Kesenian tari Bali yang ekspresif dipadukan dengan gamelan Bali bertempo cepat menjadikannya daya tarik pariwisata dunia."
+            },
+            {
+                id: "ntb",
+                nama: "Nusa Tenggara Barat",
+                ibukota: "Mataram",
+                pulau: "Nusa Tenggara & Bali",
+                suku: "Sasak, Samawa, Mbojo",
+                rumah: "Dalam Loka Samawa / Bale Tani",
+                pakaian: "Lambung & Pegon",
+                deskripsi: "Provinsi yang memadukan keindahan pantai Lombok dan keunikan tenun ikat suku Sasak. Terkenal pula dengan balapan MotoGP Mandalika.",
+                detailSuku: "Suku Sasak mendiami Pulau Lombok dengan tradisi unik kawin lari (Merariq) yang disepakati adat. Suku Mbojo dan Samawa mendiami Pulau Sumbawa dengan tradisi berkuda pacu anak-anak."
+            },
+            {
+                id: "ntt",
+                nama: "Nusa Tenggara Timur",
+                ibukota: "Kupang",
+                pulau: "Nusa Tenggara & Bali",
+                suku: "Rote, Manggarai, Sabu, Flores, Sumba, Alor",
+                rumah: "Mbaru Niang / Sao Ata Mosa Lakitana",
+                pakaian: "Tenun Ikat NTT",
+                deskripsi: "Negeri Komodo dan danau tiga warna Kelimutu. Terkenal dengan alat musik tradisional petik Sasando dari daun lontar.",
+                detailSuku: "Suku-suku di NTT sangat beragam. Suku Manggarai terkenal dengan perkampungan adat melingkar Wae Rebo yang terpencil di atas pegunungan tinggi, dan Suku Sumba dengan ritual perang kuda Pasola."
+            },
+
+            // --- KALIMANTAN ---
+            {
+                id: "kalbar",
+                nama: "Kalimantan Barat",
+                ibukota: "Pontianak",
+                pulau: "Kalimantan",
+                suku: "Dayak (Kanayatn, Iban, Ngaju), Melayu, Tionghoa",
+                rumah: "Rumah Radakng (Panjang)",
+                pakaian: "King Baba & King Bibinge",
+                deskripsi: "Provinsi yang dilewati Garis Khatulistiwa, dengan perpaduan harmonis budaya Dayak pesisir, Melayu, dan Tionghoa di Singkawang.",
+                detailSuku: "Suku Dayak Iban terkenal dengan seni tato tribal tradisional dan kebiasaan membuat anyaman manik-manik yang indah serta kerajinan mandau pusaka."
+            },
+            {
+                id: "kalteng",
+                nama: "Kalimantan Tengah",
+                ibukota: "Palangkaraya",
+                pulau: "Kalimantan",
+                suku: "Dayak (Ngaju, Ot Danum, Maanyan)",
+                rumah: "Rumah Betang",
+                pakaian: "Sangkarut",
+                deskripsi: "Jantung Kalimantan dengan Taman Nasional Tanjung Puting pusat konservasi orangutan dunia. Rumah adat betang dihuni puluhan kepala keluarga secara damai.",
+                detailSuku: "Suku Dayak Ngaju menganut agama asli leluhur Kaharingan yang sangat menghormati keseimbangan semesta alam, dengan upacara ritual kematian Tiwah yang megah."
+            },
+            {
+                id: "kalsel",
+                nama: "Kalimantan Selatan",
+                ibukota: "Banjarmasin",
+                pulau: "Kalimantan",
+                suku: "Banjar",
+                rumah: "Bubungan Tinggi",
+                pakaian: "Bagajah Gamuling Baular Lulut",
+                deskripsi: "Bumi Lambung Mangkurat dengan pasar terapung tradisional Lok Baintan di atas sungai Barito yang legendaris.",
+                detailSuku: "Suku Banjar memiliki keahlian dalam perdagangan air sungai, pembuatan kapal jukung, dan pembuatan intan di wilayah pendulangan Martapura."
+            },
+            {
+                id: "kaltim",
+                nama: "Kalimantan Timur",
+                ibukota: "Samarinda (IKN Nusantara)",
+                pulau: "Kalimantan",
+                suku: "Dayak (Kenyah, Bahau, Benuaq), Kutai, Tidung",
+                rumah: "Rumah Lamin",
+                pakaian: "Kustim (Kutai) & Sapei Sapaq",
+                deskripsi: "Provinsi yang kini menjadi lokasi Ibu Kota Nusantara (IKN). Menyimpan sejarah tertua kerajaan Hindu di Indonesia yaitu Kerajaan Kutai Mulawarman.",
+                detailSuku: "Suku Dayak Kenyah mahir dalam kesenian musik petik Sampe, tarian burung enggang yang anggun, serta memiliki adat memanjangkan daun telinga (Telingaan Aruu) sebagai simbol kecantikan kuno."
+            },
+            {
+                id: "kalara",
+                nama: "Kalimantan Utara",
+                ibukota: "Tanjung Selor",
+                pulau: "Kalimantan",
+                suku: "Dayak (Lundayeh, Kenyah), Tidung, Bulungan",
+                rumah: "Rumah Baloy",
+                pakaian: "Ta'a & Sapei Sapaq",
+                deskripsi: "Provinsi termuda di pulau Kalimantan yang berbatasan darat langsung dengan Malaysia Timur. Dihuni oleh komunitas nelayan pesisir dan pemburu pedalaman.",
+                detailSuku: "Suku Tidung merupakan komunitas muslim pesisir yang memiliki aksara kebudayaan tersendiri, dan hidup rukun dengan Suku Dayak Lundayeh di dataran tinggi Krayan yang terkenal sebagai produsen padi organik unggul."
+            },
+
+            // --- SULAWESI ---
+            {
+                id: "sulut",
+                nama: "Sulawesi Utara",
+                ibukota: "Manado",
+                pulau: "Sulawesi",
+                suku: "Minahasa, Bolaang Mongondow, Sangihe",
+                rumah: "Rumah Pewaris (Walewangko)",
+                pakaian: "Laku Tepu",
+                deskripsi: "Terkenal dengan keindahan terumbu karang Bunaken kelas dunia, keramahan penduduknya, dan musik bambu kolintang yang harmonis.",
+                detailSuku: "Suku Minahasa memiliki sistem adat gotong royong Mapalus dan terkenal dengan tarian Kabasaran yang dinamis dan berenergi menyimbolkan ketangguhan prajurit perang."
+            },
+            {
+                id: "sulteng",
+                nama: "Sulawesi Tengah",
+                ibukota: "Palu",
+                pulau: "Sulawesi",
+                suku: "Kaili, Bugis, Mori, Pamona, Lore",
+                rumah: "Rumah Tambi",
+                pakaian: "Baju Nggembe",
+                deskripsi: "Daerah situs megalitikum purba misterius di Lembah Bada serta perkebunan kakao yang melimpah ruah.",
+                detailSuku: "Suku Kaili terkenal dengan anyaman kain kulit kayu pohon beringin (Malo) yang dibuat secara tradisional serta tari Dero sebagai tarian penyambutan persahabatan masal."
+            },
+            {
+                id: "sulsel",
+                nama: "Sulawesi Selatan",
+                ibukota: "Makassar",
+                pulau: "Sulawesi",
+                suku: "Bugis, Makassar, Toraja, Mandar",
+                rumah: "Tongkonan (Toraja) / Balla Lompoa",
+                pakaian: "Baju Bodo",
+                deskripsi: "Bumi pelaut ulung perahu Pinisi yang mengarungi samudra dunia, serta tradisi pemakaman tebing batu Suku Toraja yang sangat magis.",
+                detailSuku: "Suku Bugis terkenal dengan jiwa merantaunya yang tinggi. Suku Toraja memiliki ritual adat Rambu Solo, yaitu upacara kematian termahal di dunia untuk mengantarkan roh leluhur."
+            },
+            {
+                id: "sultra",
+                nama: "Sulawesi Tenggara",
+                ibukota: "Kendari",
+                pulau: "Sulawesi",
+                suku: "Buton, Muna, Tolaki, Moronene",
+                rumah: "Rumah Adat Banua Tada",
+                pakaian: "Babu Nggawi",
+                deskripsi: "Pusat Kerajaan maritim kuno Kesultanan Buton yang memiliki benteng pertahanan darat terluas di dunia (Benteng Keraton Buton).",
+                detailSuku: "Suku Buton terkenal dengan adat maritim kuat. Suku Muna piawai dalam olahraga gulat adat tradisional dan keahlian menenun sarung sutra bermotif garis lurus."
+            },
+            {
+                id: "gorontalo",
+                nama: "Gorontalo",
+                ibukota: "Gorontalo",
+                pulau: "Sulawesi",
+                suku: "Gorontalo, Suwawa",
+                rumah: "Dulohupa",
+                pakaian: "Bili'u & Makuta",
+                deskripsi: "Serambi Madinah di Sulawesi, penghasil jagung nasional, melestarikan tradisi adat pernikahan Islam yang sangat sakral.",
+                detailSuku: "Suku Gorontalo memegang falsafah adat 'Adat bersendikan Syara, Syara bersendikan Kitabullah' yang mewarnai seluruh sistem hukum adat kemasyarakatan mereka."
+            },
+            {
+                id: "sulbar",
+                nama: "Sulawesi Barat",
+                ibukota: "Mamuju",
+                pulau: "Sulawesi",
+                suku: "Mandar, Mamasa, Pattae",
+                rumah: "Rumah Boyang",
+                pakaian: "Pattuqduq Towaine",
+                deskripsi: "Provinsi mandiri pecahan Sulawesi Selatan yang terkenal dengan tradisi kemaritiman armada perahu Sandeq tercepat di dunia.",
+                detailSuku: "Suku Mandar mendominasi wilayah ini dan dikenal sebagai pelaut tangguh pemburu hiu dan tuna di selat Makassar menggunakan perahu layar bercadik tipis tradisional."
+            },
+
+            // --- MALUKU ---
+            {
+                id: "maluku",
+                nama: "Maluku",
+                ibukota: "Ambon",
+                pulau: "Maluku",
+                suku: "Ambon, Alifuru, Kei, Banda",
+                rumah: "Baileo",
+                pakaian: "Baju Cele",
+                deskripsi: "Kepulauan Rempah (Spice Islands) incaran bangsa Eropa kuno. Terkenal dengan lagu daerah manis dan musikalitas penduduknya yang merdu.",
+                detailSuku: "Suku Ambon hidup di kepulauan kecil dan terikat sistem persaudaraan adat Pela Gandong (ikatan janji persaudaraan antar desa muslim dan kristen) yang kokoh damai."
+            },
+            {
+                id: "malut",
+                nama: "Maluku Utara",
+                ibukota: "Sofifi",
+                pulau: "Maluku",
+                suku: "Ternate, Tidore, Togutil, Tobelo",
+                rumah: "Sasadu",
+                pakaian: "Manteren Lamo",
+                deskripsi: "Wilayah kejayaan Kesultanan Islam Ternate dan Tidore yang menguasai perdagangan cengkih dunia abad pertengahan.",
+                detailSuku: "Suku Togutil merupakan suku pedalaman pulau Halmahera yang hidup nomaden di dalam hutan belantara, sangat bergantung pada sagu liar dan perburuan alami."
+            },
+
+            // --- PAPUA ---
+            {
+                id: "papua",
+                nama: "Papua",
+                ibukota: "Jayapura",
+                pulau: "Papua",
+                suku: "Dani, Asmat, Sentani, Biak",
+                rumah: "Honai",
+                pakaian: "Koteka / Sali",
+                deskripsi: "Provinsi induk Papua di pesisir utara dengan keindahan Danau Sentani dan kejayaan festival perahu adat di Samudra Pasifik.",
+                detailSuku: "Suku Sentani hidup di sekitar danau Sentani, mahir melukis di atas kulit kayu pohon khombouw yang bernilai seni tinggi dan bernilai ekspor."
+            },
+            {
+                id: "papuabarat",
+                nama: "Papua Barat",
+                ibukota: "Manokwari",
+                pulau: "Papua",
+                suku: "Arfak, Doreri, Kuri",
+                rumah: "Mod Aki Aksa (Kaki Seribu)",
+                pakaian: "Ewer",
+                deskripsi: "Kepala burung Papua dengan keanekaragaman hayati bahari tertinggi dunia di Raja Ampat serta burung Cendrawasih yang eksotis.",
+                detailSuku: "Suku Arfak mendiami pegunungan Arfak, terkenal dengan tarian ular (Tari Tumbu Tanah) yang ditarikan berputar berkelompok untuk merayakan kemenangan adat."
+            },
+            {
+                id: "papsel",
+                nama: "Papua Selatan",
+                ibukota: "Merauke",
+                pulau: "Papua",
+                suku: "Asmat, Marind, Muyu",
+                rumah: "Jew (Rumah Bujang)",
+                pakaian: "Pakaian Serat Sagu & Bulu Kasuari",
+                deskripsi: "Ujung paling timur Indonesia berbatasan dengan Papua Nugini. Memiliki bentang alam rawa gambut terluas dan rumah semut raksasa Musamus.",
+                detailSuku: "Suku Asmat merupakan seniman pemahat kayu paling legendaris di bumi. Ukiran Asmat diukir langsung tanpa sketsa, melambangkan penghormatan bagi arwah leluhur yang gugur."
+            },
+            {
+                id: "paptengah",
+                nama: "Papua Tengah",
+                ibukota: "Nabire",
+                pulau: "Papua",
+                suku: "Amungme, Kamoro, Mee",
+                rumah: "Kunai",
+                pakaian: "Cawat Koteka",
+                deskripsi: "Provinsi pemegang puncak tertinggi Indonesia, Puncak Jaya Wijaya bersalju abadi, serta kawasan tambang emas Grasberg terkaya.",
+                detailSuku: "Suku Amungme memiliki ikatan spiritual yang sangat kuat dengan gunung es Carstensz, menganggap tanah dan pegunungan tinggi sebagai organ kepala sakral leluhur mereka."
+            },
+            {
+                id: "papugunung",
+                nama: "Papua Pegunungan",
+                ibukota: "Wamena",
+                pulau: "Papua",
+                suku: "Dani, Yali, Lani",
+                rumah: "Honai Bulat",
+                pakaian: "Koteka Labu",
+                deskripsi: "Satu-satunya provinsi landlocked (tidak memiliki garis pantai) di Indonesia, terletak di Lembah Baliem yang subur di atas awan.",
+                detailSuku: "Suku Dani terkenal dengan upacara bakar batu (Barapen) sebagai simbol kerukunan perdamaian massal pasca perang suku, memotong jari sebagai tanda duka cita mendalam."
+            },
+            {
+                id: "papubardaya",
+                nama: "Papua Barat Daya",
+                ibukota: "Sorong",
+                pulau: "Papua",
+                suku: "Mooi, Kalabra, Moi-Maya",
+                rumah: "Kaki Seribu Sorong",
+                pakaian: "Ewer Papua",
+                deskripsi: "Pintu gerbang industri migas Papua Barat serta hub maritim pelayaran ekspor-impor kawasan timur nusantara.",
+                detailSuku: "Suku Mooi memegang kearifan adat bernama 'Ulim' untuk menjaga kelestarian terumbu karang dan melarang penangkapan ikan berlebihan pada musim-mushim tertentu."
+            }
+        ];
+
+        // Bank Soal Kuis Budaya Nusantara
+        const QUIZ_QUESTIONS = [
+            {
+                q: "Suku yang terkenal dengan keahlian menenun kain Ulos dan memiliki kekerabatan marga kuat di Sumatra Utara adalah...",
+                options: ["Suku Minangkabau", "Suku Batak", "Suku Dayak", "Suku Asmat"],
+                answer: 1,
+                explanation: "Suku Batak di Sumatra Utara terkenal dengan kain tenun suci tradisional bernama Ulos yang melambangkan kehangatan dan restu leluhur."
+            },
+            {
+                q: "Suku yang terkenal di dunia karena memiliki sistem kekerabatan garis keturunan Ibu (Matrilineal) terbesar di dunia adalah...",
+                options: ["Suku Sunda", "Suku Bugis", "Suku Minangkabau", "Suku Gorontalo"],
+                answer: 2,
+                explanation: "Suku Minangkabau di Sumatra Barat menganut sistem adat Matrilineal di mana harta warisan dan garis keluarga diturunkan melalui ibu."
+            },
+            {
+                q: "Suku asli yang mendiami wilayah pedalaman hutan Jambi dengan gaya hidup nomaden berburu dan meramu adalah...",
+                options: ["Suku Anak Dalam", "Suku Tengger", "Suku Baduy", "Suku Toraja"],
+                answer: 0,
+                explanation: "Suku Anak Dalam (atau Suku Kubu) hidup di belantara hutan provinsi Jambi dengan melestarikan tradisi nomaden alami."
+            },
+            {
+                q: "Masyarakat adat di provinsi Banten yang melarang penggunaan gadget, alas kaki, serta kendaraan modern demi menjaga kemurnian alam dinamakan...",
+                options: ["Suku Osing", "Suku Baduy Dalam", "Suku Sasak", "Suku Dayak Iban"],
+                answer: 1,
+                explanation: "Suku Baduy Dalam (Kanekes) memegang teguh hukum pikukuh adat untuk hidup tanpa tersentuh modernisasi demi menjaga kelestarian alam."
+            },
+            {
+                q: "Upacara keagamaan kematian super megah 'Rambu Solo' yang menyembelih kerbau belang bernilai ratusan juta rupiah diselenggarakan oleh suku...",
+                options: ["Suku Toraja", "Suku Batak", "Suku Bali", "Suku Sentani"],
+                answer: 0,
+                explanation: "Suku Toraja di Sulawesi Selatan menyelenggarakan upacara Rambu Solo untuk mengantarkan jiwa kerabat yang meninggal menuju surga (puya)."
+            },
+            {
+                q: "Alat musik tradisional petik 'Sasando' yang terbuat dari jalinan daun lontar melengkung berasal dari suku asli di...",
+                options: ["Bali", "Sulawesi Utara", "Nusa Tenggara Barat", "Nusa Tenggara Timur"],
+                answer: 3,
+                explanation: "Alat musik Sasando dikembangkan oleh suku Rote di Nusa Tenggara Timur sejak zaman dahulu kala."
+            },
+            {
+                q: "Suku di Kalimantan Timur yang memiliki adat memanjangkan telinga (Telingaan Aruu) sebagai simbol kecantikan dan status sosial adalah...",
+                options: ["Suku Banjar", "Suku Dayak Kenyah", "Suku Kutai", "Suku Togutil"],
+                answer: 1,
+                explanation: "Suku Dayak Kenyah di Kalimantan Timur secara tradisional memanjangkan daun telinga menggunakan anting tembaga pemberat berat."
+            },
+            {
+                q: "Suku yang mendiami wilayah Pegunungan Tengah Papua, membangun rumah Honai bulat tanpa jendela, dan memiliki adat upacara Bakar Batu adalah...",
+                options: ["Suku Dani", "Suku Asmat", "Suku Ambon", "Suku Sasak"],
+                answer: 0,
+                explanation: "Suku Dani di Lembah Baliem Papua terkenal dengan upacara bakar batu (Barapen) untuk pesta rasa syukur pernikahan atau perdamaian adat."
+            },
+            {
+                q: "Provinsi yang dihuni oleh suku pelaut tangguh penghasil perahu bercadik Sandeq yang diklaim tercepat di dunia adalah...",
+                options: ["Sulawesi Utara", "Kepulauan Riau", "Sulawesi Barat", "Maluku Utara"],
+                answer: 2,
+                explanation: "Suku Mandar di Sulawesi Barat terkenal dengan keahlian navigasi maritim menunggangi perahu layar kayu tipis Sandeq."
+            },
+            {
+                q: "Seni ukir pahat kayu raksasa ekspresif tanpa sketsa yang bertujuan menghormati arwah nenek moyang merupakan mahakarya dari...",
+                options: ["Suku Asmat", "Suku Bali", "Suku Dayak Ngaju", "Suku Minahasa"],
+                answer: 0,
+                explanation: "Suku Asmat di Papua Selatan adalah pemahat kayu legendaris dunia, di mana setiap karya patung memiliki makna mistis tersendiri."
+            }
+        ];
+
+        // State variables
+        let activeTab = 'home';
+        let selectedProvinceId = 'aceh';
+        let currentFlashcardIndex = 0;
+        let isFlashcardFlipped = false;
+        let matchLeftSelected = null;
+        let matchRightSelected = null;
+        let matchScore = 0;
+        let matchLives = 3;
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizTimerInterval = null;
+        let quizTimerCount = 25;
+        let activeQuizQuestions = [];
+
+        // ONLOAD INITIALIZATION
+        window.onload = function() {
+            // Render province materials list
+            renderProvinceList();
+            showProvinceDetail(selectedProvinceId);
+            
+            // Render flashcard front
+            updateFlashcardView();
+            
+            // Build Generator selection options
+            buildGeneratorOptions();
+            
+            // Start match game once
+            initMatchGame();
+            
+            // Trigger home view first
+            switchTab('home');
+        };
+
+        // Navigation system
+        function switchTab(tabId) {
+            activeTab = tabId;
+            
+            // Hide all sections
+            document.getElementById('tab-home').classList.add('hidden');
+            document.getElementById('tab-materi').classList.add('hidden');
+            document.getElementById('tab-flashcards').classList.add('hidden');
+            document.getElementById('tab-match').classList.add('hidden');
+            document.getElementById('tab-kuis').classList.add('hidden');
+            document.getElementById('tab-generator').classList.add('hidden');
+            document.getElementById('tab-chatbot').classList.add('hidden');
+            
+            // Show active section
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            
+            // Update active styles on navigation buttons
+            const navIds = ['home', 'materi', 'flashcards', 'match', 'kuis', 'generator', 'chatbot'];
+            navIds.forEach(id => {
+                const btn = document.getElementById(`nav-${id}`);
+                if (btn) {
+                    if (id === tabId) {
+                        btn.className = "px-3 py-2 rounded-lg text-sm font-semibold bg-emerald-900/60 text-white transition-all shadow-inner border-b-2 border-amber-400";
+                    } else {
+                        btn.className = "px-3 py-2 rounded-lg text-sm font-medium text-emerald-100 hover:bg-emerald-900/30 transition-all border-b-2 border-transparent";
+                    }
+                }
+            });
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Extra resets
+            if (tabId === 'match') {
+                initMatchGame();
+            }
+            if (tabId === 'flashcards') {
+                isFlashcardFlipped = false;
+                document.getElementById('flashcard-inner').style.transform = '';
+                updateFlashcardView();
+            }
+            if (tabId === 'kuis') {
+                resetQuizToStart();
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Tab Materi - Render Province list items
+        function renderProvinceList(data = PROVINCES_DATA) {
+            const container = document.getElementById('province-list-container');
+            container.innerHTML = '';
+            
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center p-8 bg-white rounded-2xl border border-slate-100 text-slate-500 text-sm">
+                        <i class="fa-solid fa-face-frown text-3xl mb-2 text-slate-300"></i>
+                        <p class="font-semibold">Provinsi Tidak Ditemukan</p>
+                        <p class="text-xs">Coba cari dengan kata kunci lain.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            data.forEach(p => {
+                const isSelected = p.id === selectedProvinceId;
+                const card = document.createElement('div');
+                card.id = `province-item-${p.id}`;
+                card.onclick = () => showProvinceDetail(p.id);
+                card.className = `p-4 rounded-2xl cursor-pointer border transition-all ${
+                    isSelected 
+                    ? 'bg-emerald-50 border-emerald-500 shadow-md transform -translate-y-0.5' 
+                    : 'bg-white border-slate-100 hover:border-slate-300 hover:bg-slate-50 shadow-sm'
+                }`;
+                
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] uppercase font-bold text-emerald-600 bg-emerald-100/50 px-2 py-0.5 rounded-full">${p.pulau}</span>
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-star text-amber-400 text-[10px] mr-1"></i> Terdata</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base mt-2">${p.nama}</h3>
+                    <p class="text-xs text-slate-500 mt-1 line-clamp-1"><strong class="text-slate-600">Suku Utama:</strong> ${p.suku}</p>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Filter / Search Province list
+        function filterProvinces() {
+            const query = document.getElementById('materi-search').value.toLowerCase().trim();
+            const pulauFilter = document.getElementById('materi-filter-pulau').value;
+            
+            const filtered = PROVINCES_DATA.filter(p => {
+                const matchQuery = p.nama.toLowerCase().includes(query) || 
+                                   p.suku.toLowerCase().includes(query) || 
+                                   p.pulau.toLowerCase().includes(query) ||
+                                   p.ibukota.toLowerCase().includes(query);
+                const matchPulau = pulauFilter === 'Semua' || p.pulau === pulauFilter;
+                return matchQuery && matchPulau;
+            });
+            
+            renderProvinceList(filtered);
+        }
+
+        // Show Province details on the right pane
+        function showProvinceDetail(provinceId) {
+            selectedProvinceId = provinceId;
+            
+            // Highlight list item
+            PROVINCES_DATA.forEach(p => {
+                const item = document.getElementById(`province-item-${p.id}`);
+                if (item) {
+                    if (p.id === provinceId) {
+                        item.className = "p-4 rounded-2xl cursor-pointer border transition-all bg-emerald-50 border-emerald-500 shadow-md transform -translate-y-0.5";
+                    } else {
+                        item.className = "p-4 rounded-2xl cursor-pointer border transition-all bg-white border-slate-100 hover:border-slate-300 hover:bg-slate-50 shadow-sm";
+                    }
+                }
+            });
+
+            const p = PROVINCES_DATA.find(prov => prov.id === provinceId);
+            const detailContainer = document.getElementById('province-detail-container');
+            
+            // Render details
+            detailContainer.innerHTML = `
+                <div class="bg-white border border-slate-100 shadow-lg rounded-3xl overflow-hidden animate-fade-in flex flex-col justify-between h-full min-h-[500px]">
+                    <!-- Banner -->
+                    <div class="bg-gradient-to-r from-emerald-800 to-teal-700 p-6 text-white relative">
+                        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                        <div class="relative z-10 flex flex-col gap-2">
+                            <span class="text-xs font-bold uppercase tracking-widest text-emerald-300">${p.pulau}</span>
+                            <h2 class="serif-title text-3xl font-extrabold">${p.nama}</h2>
+                            <p class="text-xs text-emerald-100"><i class="fa-solid fa-building-columns mr-1"></i> Ibu Kota: <strong class="text-white">${p.ibukota}</strong></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Body -->
+                    <div class="p-6 md:p-8 space-y-6 flex-grow">
+                        <!-- Overview Description -->
+                        <div class="space-y-2">
+                            <h4 class="text-xs uppercase font-extrabold tracking-wider text-slate-400">Deskripsi Singkat</h4>
+                            <p class="text-slate-700 text-sm leading-relaxed">${p.deskripsi}</p>
+                        </div>
+
+                        <!-- Adat Details Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100 flex items-start gap-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-2.5 rounded-xl"><i class="fa-solid fa-house-chimney text-base"></i></div>
+                                <div>
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-wide block font-semibold">Rumah Adat</span>
+                                    <span class="text-sm font-bold text-slate-800">${p.rumah}</span>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-amber-50/50 border border-amber-100 flex items-start gap-3">
+                                <div class="bg-amber-100 text-amber-700 p-2.5 rounded-xl"><i class="fa-solid fa-shirt text-base"></i></div>
+                                <div>
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-wide block font-semibold">Pakaian Adat</span>
+                                    <span class="text-sm font-bold text-slate-800">${p.pakaian}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Suku Utama -->
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-150 space-y-2">
+                            <span class="text-xs uppercase font-extrabold tracking-wider text-slate-400 flex items-center gap-1">
+                                <i class="fa-solid fa-users text-slate-500"></i> Daftar Suku Asli Terdata
+                            </span>
+                            <p class="text-slate-800 text-sm font-bold">${p.suku}</p>
+                            <p class="text-xs text-slate-500 leading-relaxed pt-1.5 border-t border-slate-200">${p.detailSuku}</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA Action buttons -->
+                    <div class="bg-slate-50 border-t border-slate-100 p-4 flex flex-col sm:flex-row gap-2 justify-between items-center text-xs text-slate-500">
+                        <span>Ingin melihat visualisasi realistik suku ini?</span>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <button onclick="inspectSukuInAI('${p.id}')" class="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-bold flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Potret Suku AI
+                            </button>
+                            <button onclick="askAITutorAboutProvince('${p.nama}')" class="flex-1 sm:flex-none bg-amber-500 hover:bg-amber-650 text-white px-4 py-2 rounded-lg font-bold flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-comments"></i> Tanya Guru AI
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Action when inspect AI is triggered from detail
+        function inspectSukuInAI(provId) {
+            switchTab('generator');
+            const selectProv = document.getElementById('gen-provinsi');
+            selectProv.value = provId;
+            updateGenSukuOptions();
+        }
+
+        // Action to talk to Guru AI about a specific province
+        function askAITutorAboutProvince(provName) {
+            switchTab('chatbot');
+            quickChat(`Bisa ceritakan lebih dalam mengenai kebudayaan suku-suku yang ada di Provinsi ${provName}?`);
+        }
+
+        // Tab Flashcards - Render active flashcard
+        function updateFlashcardView() {
+            const p = PROVINCES_DATA[currentFlashcardIndex];
+            
+            document.getElementById('fc-island').innerText = p.pulau;
+            document.getElementById('fc-province').innerText = p.nama;
+            document.getElementById('fc-suku').innerText = p.suku;
+            document.getElementById('fc-rumah').innerText = p.rumah;
+            document.getElementById('fc-pakaian').innerText = p.pakaian;
+            
+            const countStr = `Kartu ${currentFlashcardIndex + 1} dari ${PROVINCES_DATA.length}`;
+            document.getElementById('fc-progress-front').innerHTML = `<span>${countStr}</span><span>Balik <i class="fa-solid fa-arrow-rotate-right ml-1"></i></span>`;
+            document.getElementById('fc-progress-back').innerHTML = `<span>${countStr}</span><span>Kembali <i class="fa-solid fa-arrow-rotate-right ml-1"></i></span>`;
+        }
+
+        function toggleFlashcard() {
+            isFlashcardFlipped = !isFlashcardFlipped;
+            const cardInner = document.getElementById('flashcard-inner');
+            if (isFlashcardFlipped) {
+                cardInner.style.transform = 'rotateY(180deg)';
+            } else {
+                cardInner.style.transform = '';
+            }
+        }
+
+        function nextFlashcard() {
+            isFlashcardFlipped = false;
+            document.getElementById('flashcard-inner').style.transform = '';
+            setTimeout(() => {
+                currentFlashcardIndex = (currentFlashcardIndex + 1) % PROVINCES_DATA.length;
+                updateFlashcardView();
+            }, 150);
+        }
+
+        function prevFlashcard() {
+            isFlashcardFlipped = false;
+            document.getElementById('flashcard-inner').style.transform = '';
+            setTimeout(() => {
+                currentFlashcardIndex = (currentFlashcardIndex - 1 + PROVINCES_DATA.length) % PROVINCES_DATA.length;
+                updateFlashcardView();
+            }, 150);
+        }
+
+        function shuffleFlashcards() {
+            isFlashcardFlipped = false;
+            document.getElementById('flashcard-inner').style.transform = '';
+            setTimeout(() => {
+                currentFlashcardIndex = Math.floor(Math.random() * PROVINCES_DATA.length);
+                updateFlashcardView();
+            }, 150);
+        }
+
+        // Tab Match Game - Match tribes with Provinces
+        function initMatchGame() {
+            matchLeftSelected = null;
+            matchRightSelected = null;
+            matchScore = 0;
+            matchLives = 3;
+            
+            document.getElementById('match-score').innerText = matchScore;
+            updateMatchLivesUI();
+            
+            const statusBox = document.getElementById('match-status');
+            statusBox.className = "hidden p-4 rounded-xl text-center text-sm font-semibold transition-all";
+            statusBox.innerHTML = '';
+
+            // Shuffle 5 provinces to create pairings
+            const shuffledProvinces = [...PROVINCES_DATA].sort(() => 0.5 - Math.random()).slice(0, 5);
+            
+            // Build left column (Suku - derived first suku from database list)
+            const leftData = shuffledProvinces.map(p => {
+                const mainSuku = p.suku.split(',')[0];
+                return { id: p.id, label: `Suku ${mainSuku}` };
+            }).sort(() => 0.5 - Math.random());
+            
+            // Build right column (Provinsi)
+            const rightData = shuffledProvinces.map(p => {
+                return { id: p.id, label: p.nama };
+            }).sort(() => 0.5 - Math.random());
+
+            const leftCol = document.getElementById('match-left-column');
+            leftCol.innerHTML = '';
+            leftData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.id = `match-left-${item.id}`;
+                btn.onclick = () => selectMatchItem('left', item.id);
+                btn.className = "w-full text-left p-3 rounded-xl border border-slate-200 text-slate-700 bg-white font-semibold hover:bg-slate-50 text-sm transition-all shadow-sm flex items-center justify-between";
+                btn.innerHTML = `<span>${item.label}</span> <i class="fa-solid fa-circle-question text-slate-300"></i>`;
+                leftCol.appendChild(btn);
+            });
+
+            const rightCol = document.getElementById('match-right-column');
+            rightCol.innerHTML = '';
+            rightData.forEach(item => {
+                const btn = document.createElement('button');
+                btn.id = `match-right-${item.id}`;
+                btn.onclick = () => selectMatchItem('right', item.id);
+                btn.className = "w-full text-left p-3 rounded-xl border border-slate-200 text-slate-700 bg-white font-semibold hover:bg-slate-50 text-sm transition-all shadow-sm flex items-center justify-between";
+                btn.innerHTML = `<span>Prov. ${item.label}</span> <i class="fa-solid fa-map-pin text-slate-300"></i>`;
+                rightCol.appendChild(btn);
+            });
+        }
+
+        function updateMatchLivesUI() {
+            const livesEl = document.getElementById('match-lives');
+            livesEl.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < matchLives) {
+                    livesEl.innerHTML += `<i class="fa-solid fa-heart text-rose-500 mr-0.5"></i>`;
+                } else {
+                    livesEl.innerHTML += `<i class="fa-regular fa-heart text-slate-300 mr-0.5"></i>`;
+                }
+            }
+        }
+
+        function selectMatchItem(side, id) {
+            if (matchLives <= 0 || matchScore >= 5) return;
+
+            // Highlight chosen
+            if (side === 'left') {
+                // Clear previous left
+                if (matchLeftSelected) {
+                    const prevBtn = document.getElementById(`match-left-${matchLeftSelected}`);
+                    if (prevBtn) prevBtn.className = "w-full text-left p-3 rounded-xl border border-slate-200 text-slate-700 bg-white font-semibold hover:bg-slate-50 text-sm transition-all shadow-sm flex items-center justify-between";
+                }
+                matchLeftSelected = id;
+                const btn = document.getElementById(`match-left-${id}`);
+                btn.className = "w-full text-left p-3 rounded-xl border-2 border-indigo-500 text-indigo-700 bg-indigo-50 font-bold text-sm transition-all shadow-md flex items-center justify-between";
+            } else {
+                // Clear previous right
+                if (matchRightSelected) {
+                    const prevBtn = document.getElementById(`match-right-${matchRightSelected}`);
+                    if (prevBtn) prevBtn.className = "w-full text-left p-3 rounded-xl border border-slate-200 text-slate-700 bg-white font-semibold hover:bg-slate-50 text-sm transition-all shadow-sm flex items-center justify-between";
+                }
+                matchRightSelected = id;
+                const btn = document.getElementById(`match-right-${id}`);
+                btn.className = "w-full text-left p-3 rounded-xl border-2 border-indigo-500 text-indigo-700 bg-indigo-50 font-bold text-sm transition-all shadow-md flex items-center justify-between";
+            }
+
+            // Check match if both selected
+            if (matchLeftSelected && matchRightSelected) {
+                setTimeout(() => {
+                    checkMatchPairing();
+                }, 300);
+            }
+        }
+
+        function checkMatchPairing() {
+            const isCorrect = matchLeftSelected === matchRightSelected;
+            const leftBtn = document.getElementById(`match-left-${matchLeftSelected}`);
+            const rightBtn = document.getElementById(`match-right-${matchRightSelected}`);
+
+            const statusBox = document.getElementById('match-status');
+
+            if (isCorrect) {
+                // Style correct
+                if (leftBtn) {
+                    leftBtn.className = "w-full text-left p-3 rounded-xl border border-emerald-500 text-emerald-800 bg-emerald-100 font-semibold text-sm transition shadow flex items-center justify-between pointer-events-none";
+                    leftBtn.innerHTML = `<span>${leftBtn.innerText}</span> <i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                }
+                if (rightBtn) {
+                    rightBtn.className = "w-full text-left p-3 rounded-xl border border-emerald-500 text-emerald-800 bg-emerald-100 font-semibold text-sm transition shadow flex items-center justify-between pointer-events-none";
+                    rightBtn.innerHTML = `<span>${rightBtn.innerText}</span> <i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                }
+
+                matchScore++;
+                document.getElementById('match-score').innerText = matchScore;
+
+                statusBox.className = "p-4 rounded-xl text-center text-sm font-semibold bg-emerald-100 text-emerald-800 block";
+                statusBox.innerHTML = `<i class="fa-solid fa-face-smile mr-1.5"></i> Bagus sekali! Pasangan tersebut sangat tepat.`;
+
+                // Check Win
+                if (matchScore === 5) {
+                    statusBox.className = "p-4 rounded-xl text-center text-sm font-extrabold bg-gradient-to-r from-emerald-600 to-teal-700 text-white block shadow-lg animate-bounce mt-4";
+                    statusBox.innerHTML = `<i class="fa-solid fa-trophy mr-1.5 text-yellow-300"></i> Selamat! Kamu memenangkan game kecocokan suku dengan sempurna!`;
+                }
+            } else {
+                // Style incorrect temporarily
+                if (leftBtn) leftBtn.className = "w-full text-left p-3 rounded-xl border-2 border-rose-500 text-rose-700 bg-rose-50 font-semibold text-sm transition flex items-center justify-between";
+                if (rightBtn) rightBtn.className = "w-full text-left p-3 rounded-xl border-2 border-rose-500 text-rose-700 bg-rose-50 font-semibold text-sm transition flex items-center justify-between";
+
+                matchLives--;
+                updateMatchLivesUI();
+
+                statusBox.className = "p-4 rounded-xl text-center text-sm font-semibold bg-rose-100 text-rose-800 block";
+                statusBox.innerHTML = `<i class="fa-solid fa-face-frown mr-1.5"></i> Kurang tepat! Pasangan suku dan provinsi tersebut salah.`;
+
+                // Check Lose
+                if (matchLives <= 0) {
+                    statusBox.className = "p-4 rounded-xl text-center text-sm font-extrabold bg-rose-600 text-white block shadow-lg mt-4";
+                    statusBox.innerHTML = `<i class="fa-solid fa-skull-crossbones mr-1.5"></i> Kesempatan Habis! Silakan mulai ulang permainan.`;
+                    
+                    // Disable all
+                    document.querySelectorAll('#match-left-column button, #match-right-column button').forEach(b => {
+                        b.classList.add('pointer-events-none', 'opacity-60');
+                    });
+                } else {
+                    // Revert colors to standard after 1s
+                    setTimeout(() => {
+                        if (leftBtn && leftBtn.className.includes('bg-rose-50')) {
+                            leftBtn.className = "w-full text-left p-3 rounded-xl border border-slate-200 text-slate-700 bg-white font-semibold hover:bg-slate-50 text-sm transition shadow-sm flex items-center justify-between";
+                        }
+                        if (rightBtn && rightBtn.className.includes('bg-rose-50')) {
+                            rightBtn.className = "w-full text-left p-3 rounded-xl border border-slate-200 text-slate-700 bg-white font-semibold hover:bg-slate-50 text-sm transition shadow-sm flex items-center justify-between";
+                        }
+                    }, 1200);
+                }
+            }
+
+            // Reset current selection state
+            matchLeftSelected = null;
+            matchRightSelected = null;
+        }
+
+        // Tab Kuis Nusantara
+        function resetQuizToStart() {
+            clearInterval(quizTimerInterval);
+            document.getElementById('quiz-start-screen').classList.remove('hidden');
+            document.getElementById('quiz-play-screen').classList.add('hidden');
+            document.getElementById('quiz-result-screen').classList.add('hidden');
+        }
+
+        function startQuiz() {
+            quizIndex = 0;
+            quizScore = 0;
+            
+            // Randomly pick 10 questions from bank
+            activeQuizQuestions = [...QUIZ_QUESTIONS].sort(() => 0.5 - Math.random()).slice(0, 10);
+            
+            document.getElementById('quiz-start-screen').classList.add('hidden');
+            document.getElementById('quiz-result-screen').classList.add('hidden');
+            document.getElementById('quiz-play-screen').classList.remove('hidden');
+            
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            clearInterval(quizTimerInterval);
+            const qData = activeQuizQuestions[quizIndex];
+            
+            // Render basic labels
+            document.getElementById('quiz-question-counter').innerText = `Pertanyaan ${quizIndex + 1} dari 10`;
+            document.getElementById('quiz-question-text').innerText = qData.q;
+            
+            // Progress Bar
+            const percent = ((quizIndex + 1) / 10) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+
+            // Reset explanation banner
+            const expBanner = document.getElementById('quiz-explanation-banner');
+            expBanner.classList.add('hidden');
+            
+            // Reset next button
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            // Render options
+            const optionsBox = document.getElementById('quiz-options-container');
+            optionsBox.innerHTML = '';
+            
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `quiz-opt-${idx}`;
+                btn.onclick = () => submitQuizAnswer(idx);
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 font-semibold text-sm transition-all shadow-sm flex items-center justify-between hover:border-slate-300";
+                btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle text-slate-300"></i>`;
+                optionsBox.appendChild(btn);
+            });
+
+            // Start timer
+            quizTimerCount = 25;
+            document.getElementById('quiz-timer').innerText = quizTimerCount;
+            
+            quizTimerInterval = setInterval(() => {
+                quizTimerCount--;
+                document.getElementById('quiz-timer').innerText = quizTimerCount;
+                if (quizTimerCount <= 0) {
+                    clearInterval(quizTimerInterval);
+                    // Force timeout answer (incorrect)
+                    submitQuizAnswer(-1);
+                }
+            }, 1000);
+        }
+
+        function submitQuizAnswer(selectedIdx) {
+            clearInterval(quizTimerInterval);
+            const qData = activeQuizQuestions[quizIndex];
+            const correctIdx = qData.answer;
+            const optionsBox = document.getElementById('quiz-options-container');
+
+            // Disable all options
+            const btns = optionsBox.getElementsByTagName('button');
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].disabled = true;
+                btns[i].classList.add('opacity-60', 'pointer-events-none');
+            }
+
+            const expBanner = document.getElementById('quiz-explanation-banner');
+            const expIcon = document.getElementById('quiz-explanation-icon');
+            const expTitle = document.getElementById('quiz-explanation-title');
+            const expText = document.getElementById('quiz-explanation-text');
+            
+            const isCorrect = selectedIdx === correctIdx;
+
+            if (isCorrect) {
+                quizScore += 10; // 10 points per answer
+                
+                // Highlight chosen correct
+                const chosen = document.getElementById(`quiz-opt-${selectedIdx}`);
+                chosen.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 text-emerald-800 bg-emerald-50 font-bold text-sm shadow-md flex items-center justify-between";
+                chosen.innerHTML = `<span>${chosen.innerText}</span> <i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                chosen.classList.remove('opacity-60');
+
+                // Show Explanation
+                expBanner.className = "p-4 rounded-xl text-sm bg-emerald-50 border border-emerald-100 flex items-start gap-3 text-emerald-800";
+                expIcon.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                expTitle.innerText = "Jawaban Benar! (+10 Poin)";
+            } else {
+                // Highlight selected incorrect (if any)
+                if (selectedIdx !== -1) {
+                    const chosen = document.getElementById(`quiz-opt-${selectedIdx}`);
+                    chosen.className = "w-full text-left p-4 rounded-xl border-2 border-rose-500 text-rose-800 bg-rose-50 font-bold text-sm shadow flex items-center justify-between";
+                    chosen.innerHTML = `<span>${chosen.innerText}</span> <i class="fa-solid fa-circle-xmark text-rose-600"></i>`;
+                    chosen.classList.remove('opacity-60');
+                }
+
+                // Highlight correct answer for education
+                const correctBtn = document.getElementById(`quiz-opt-${correctIdx}`);
+                correctBtn.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 text-emerald-800 bg-emerald-50/50 font-semibold text-sm flex items-center justify-between";
+                correctBtn.innerHTML = `<span>${correctBtn.innerText}</span> <i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+                correctBtn.classList.remove('opacity-60');
+
+                // Show Explanation
+                expBanner.className = "p-4 rounded-xl text-sm bg-rose-50 border border-rose-100 flex items-start gap-3 text-rose-800";
+                expIcon.innerHTML = `<i class="fa-solid fa-circle-info text-rose-600"></i>`;
+                expTitle.innerText = selectedIdx === -1 ? "Waktu Habis!" : "Jawaban Kurang Tepat!";
+            }
+
+            expText.innerText = qData.explanation;
+            expBanner.classList.remove('hidden');
+
+            // Show next button
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            quizIndex++;
+            if (quizIndex < 10) {
+                loadQuizQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-play-screen').classList.add('hidden');
+            document.getElementById('quiz-result-screen').classList.remove('hidden');
+
+            // Set dynamic text
+            document.getElementById('quiz-final-score').innerText = quizScore;
+            
+            const corrects = quizScore / 10;
+            const incorrects = 10 - corrects;
+            document.getElementById('quiz-correct-incorrect').innerText = `${corrects} Benar / ${incorrects} Salah`;
+
+            // Greeting & Badges
+            let greeting = "Hebat Sekali!";
+            let badge = "Ahli Muda Nusantara";
+
+            if (quizScore >= 90) {
+                greeting = "Luar Biasa Sempurna!";
+                badge = "Ahli Utama Nusantara 👑";
+            } else if (quizScore >= 70) {
+                greeting = "Bagus Sekali!";
+                badge = "Pratama Adat Nusantara 🏅";
+            } else if (quizScore >= 50) {
+                greeting = "Cukup Bagus!";
+                badge = "Pencinta Budaya Pemula";
+            } else {
+                greeting = "Ayo Belajar Lagi!";
+                badge = "Siswa Budaya";
+            }
+
+            document.getElementById('quiz-result-greeting').innerText = greeting;
+            document.getElementById('quiz-badge').innerText = badge;
+        }
+
+        // Tab AI Generator - Controls & Imagen Prompt formulation
+        function buildGeneratorOptions() {
+            const selectProv = document.getElementById('gen-provinsi');
+            selectProv.innerHTML = '';
+            PROVINCES_DATA.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.innerText = p.nama;
+                selectProv.appendChild(opt);
+            });
+
+            updateGenSukuOptions();
+        }
+
+        function updateGenSukuOptions() {
+            const selectProv = document.getElementById('gen-provinsi');
+            const selectSuku = document.getElementById('gen-suku');
+            const provId = selectProv.value;
+            const p = PROVINCES_DATA.find(prov => prov.id === provId);
+
+            selectSuku.innerHTML = '';
+            if (p) {
+                const sukuList = p.suku.split(', ');
+                sukuList.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s;
+                    opt.innerText = `Suku ${s}`;
+                    selectSuku.appendChild(opt);
+                });
+            }
+
+            updateGenPromptPreview();
+        }
+
+        // Listen to option changes to update prompt preview
+        document.getElementById('gen-provinsi').addEventListener('change', updateGenPromptPreview);
+        document.getElementById('gen-suku').addEventListener('change', updateGenPromptPreview);
+        document.getElementById('gen-gender').addEventListener('change', updateGenPromptPreview);
+        document.getElementById('gen-bg').addEventListener('change', updateGenPromptPreview);
+
+        function updateGenPromptPreview() {
+            const suku = document.getElementById('gen-suku').value || 'Aceh';
+            const prov = document.getElementById('gen-provinsi').options[document.getElementById('gen-provinsi').selectedIndex]?.text || 'Aceh';
+            const style = document.getElementById('gen-gender').value;
+            const background = document.getElementById('gen-bg').value;
+
+            // Formulate high-quality realistic photo prompt for Imagen
+            const finalPrompt = `A hyper-realistic close-up portrait of ${style} from ${suku} tribe in ${prov} province, Indonesia. Wearing highly detailed traditional clothes (baju adat) with rich authentic cultural ornaments, intricate textures, and accessories. Set against ${background}. Professional photography, stunning lighting, cinematic, realistic skin texture, 8k resolution.`;
+            
+            document.getElementById('gen-prompt-preview').innerText = finalPrompt;
+        }
+
+        // Execute Enhanced AI Generation to solve niche tribe accuracy
+        async function generateSukuImage() {
+            const suku = document.getElementById('gen-suku').value || 'Aceh';
+            const prov = document.getElementById('gen-provinsi').options[document.getElementById('gen-provinsi').selectedIndex]?.text || 'Aceh';
+            const style = document.getElementById('gen-gender').value;
+            const background = document.getElementById('gen-bg').value;
+            
+            const emptyState = document.getElementById('gen-empty-state');
+            const loadingState = document.getElementById('gen-loading-state');
+            const loadingTitle = document.getElementById('gen-loading-title');
+            const loadingDesc = document.getElementById('gen-loading-desc');
+            const resultImg = document.getElementById('gen-result-img');
+            const detailCard = document.getElementById('gen-detail-card');
+
+            // Set visual elements to loading
+            emptyState.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+            resultImg.classList.add('hidden');
+            detailCard.classList.add('hidden');
+
+            let finalPromptForImagen = document.getElementById('gen-prompt-preview').innerText;
+
+            try {
+                const apiKey = ""; // Canvas handles this automatically
+                
+                // TAHAP 1: Minta Gemini merumuskan deskripsi pakaian adat secara mendalam
+                loadingTitle.innerText = "Tahap 1: Menganalisis Kebudayaan Suku...";
+                loadingDesc.innerText = `Guru Ayu AI sedang merumuskan detail pakaian adat, aksesoris, dan mahkota khas Suku ${suku} agar hasilnya akurat...`;
+
+                const textApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                const detailFinderPrompt = `Write a highly detailed, visually descriptive English prompt of 2 short sentences for an image generator (Imagen). Describe the traditional costume (baju adat), specific headgear (mahkota/topi adat), patterns, and jewelry worn by a ${style} from the ${suku} tribe of ${prov} province, Indonesia. Do not output any introductory or conversational text, only the raw descriptive sentences.`;
+
+                const textResponse = await fetch(textApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: detailFinderPrompt }] }]
+                    })
+                });
+
+                if (textResponse.ok) {
+                    const textResult = await textResponse.json();
+                    const expandedDescription = textResult.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (expandedDescription && expandedDescription.trim().length > 10) {
+                        // Gabungkan deskripsi kaya budaya dari Gemini ke dalam prompt Imagen
+                        finalPromptForImagen = `A hyper-realistic close-up portrait photography of ${style} from ${suku} tribe, ${prov}, Indonesia. ${expandedDescription.trim()} Behind them is ${background}. Cinematic lighting, studio portrait quality, realistic skin pores, extremely detailed fabric weaves, 8k.`;
+                        console.log("Enhanced Prompt:", finalPromptForImagen);
+                    }
+                }
+
+                // TAHAP 2: Kirim prompt hasil perluasan ke Imagen 4.0
+                loadingTitle.innerText = "Tahap 2: Melukis Potret Adat Realistis...";
+                loadingDesc.innerText = `Kecerdasan Buatan sedang merender detail serat kain dan ornamen pusaka Suku ${suku}. Harap tunggu sebentar...`;
+
+                const imageApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`;
+                const payload = {
+                    instances: [
+                        { prompt: finalPromptForImagen }
+                    ],
+                    parameters: {
+                        sampleCount: 1,
+                        aspectRatio: "1:1",
+                        outputMimeType: "image/jpeg"
+                    }
+                };
+
+                const response = await fetch(imageApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error("Gagal terhubung ke API Gambar.");
+                }
+
+                const result = await response.json();
+                
+                if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                    const base64Data = result.predictions[0].bytesBase64Encoded;
+                    const imageUrl = `data:image/jpeg;base64,${base64Data}`;
+                    
+                    // Render image
+                    resultImg.src = imageUrl;
+                    resultImg.classList.remove('hidden');
+                    
+                    // Update detail description card
+                    detailCard.innerHTML = `
+                        <h4 class="font-bold text-slate-800 text-sm flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-emerald-600"></i> Potret Suku ${suku} Berhasil Dihasilkan!
+                        </h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Deskripsi Visual Terbimbing:</strong> "${finalPromptForImagen}"
+                        </p>
+                    `;
+                    detailCard.classList.remove('hidden');
+                } else {
+                    throw new Error("Format respons tidak sesuai.");
+                }
+
+            } catch (err) {
+                console.error(err);
+                resultImg.src = "https://images.unsplash.com/photo-1590055531615-f16d36ffa8f4?auto=format&fit=crop&q=80&w=600";
+                resultImg.classList.remove('hidden');
+                
+                detailCard.innerHTML = `
+                    <h4 class="font-bold text-rose-800 text-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-exclamation"></i> Kendala Server Imagen / Mode Offline
+                    </h4>
+                    <p class="text-xs text-rose-700 leading-relaxed">
+                        Kami menampilkan gambar ilustrasi alternatif sementara. Anda tetap dapat menjelajahi seluruh ulasan adat lengkap Suku ${suku} melalui panel materi.
+                    </p>
+                `;
+                detailCard.classList.remove('hidden');
+            } finally {
+                loadingState.classList.add('hidden');
+            }
+        }
+
+        // Tab Chatbot - Converse with Gemini 3 Flash
+        async function handleChatSubmit(e) {
+            if (e) e.preventDefault();
+            
+            const inputEl = document.getElementById('chatbot-input');
+            const messageText = inputEl.value.trim();
+            if (!messageText) return;
+
+            // Clear input
+            inputEl.value = '';
+
+            await postUserMessageAndGetAIResponse(messageText);
+        }
+
+        async function quickChat(text) {
+            await postUserMessageAndGetAIResponse(text);
+        }
+
+        async function postUserMessageAndGetAIResponse(messageText) {
+            const container = document.getElementById('chatbot-message-container');
+
+            // Render User Message UI
+            const userMsgHtml = `
+                <div class="flex items-start gap-3 max-w-xl ml-auto justify-end">
+                    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 p-3.5 rounded-2xl text-white text-sm shadow-sm">
+                        <p>${messageText}</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">
+                        Kamu
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', userMsgHtml);
+            container.scrollTop = container.scrollHeight;
+
+            // Render AI Thinking State UI
+            const thinkingId = `ai-thinking-${Date.now()}`;
+            const thinkingHtml = `
+                <div id="${thinkingId}" class="flex items-start gap-3 max-w-xl">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                        GA
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-150 shadow-sm text-sm text-slate-500 italic flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-slate-400 animate-bounce"></span>
+                        <span class="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.2s]"></span>
+                        <span class="w-2 h-2 rounded-full bg-slate-400 animate-bounce [animation-delay:0.4s]"></span>
+                        <span>Guru Ayu sedang menyusun penjelasan budaya...</span>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', thinkingHtml);
+            container.scrollTop = container.scrollHeight;
+
+            try {
+                // Call Gemini 3 Flash API
+                const apiKey = ""; // Canvas handles this inject
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                
+                const systemPrompt = "Kamu adalah Guru Ayu Nusantara, seorang guru sekolah terkemuka, ramah, bersahaja, dan ahli dalam kebudayaan Indonesia, khususnya suku-suku di 38 provinsi di Indonesia. Jawab pertanyaan siswa dengan bahasa Indonesia yang hangat, sopan, mudah dipahami, edukatif, serta sertakan fun fact menarik bila memungkinkan.";
+                
+                const payload = {
+                    contents: [{ parts: [{ text: messageText }] }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    }
+                };
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error("Gagal mendapatkan respons dari Guru AI.");
+                }
+
+                const result = await response.json();
+                const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf anak manis, Guru Ayu sedang kehilangan fokus. Bisa ulangi pertanyaannya?";
+
+                // Remove thinking state
+                document.getElementById(thinkingId).remove();
+
+                // Format paragraph with linebreaks to html paragraphs
+                const formattedAiText = aiText.replace(/\n/g, "<br>");
+
+                // Render AI Answer UI
+                const aiMsgHtml = `
+                    <div class="flex items-start gap-3 max-w-xl animate-fade-in">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            GA
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-150 shadow-sm text-sm text-slate-700 leading-relaxed">
+                            ${formattedAiText}
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', aiMsgHtml);
+                container.scrollTop = container.scrollHeight;
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById(thinkingId).remove();
+                
+                const errorMsgHtml = `
+                    <div class="flex items-start gap-3 max-w-xl text-xs">
+                        <div class="w-8 h-8 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            GA
+                        </div>
+                        <div class="bg-rose-50 p-3 rounded-2xl border border-rose-150 text-rose-800 leading-relaxed">
+                            Aduh, koneksi internet Guru sedang terganggu sedikit. Namun jangan khawatir, silakan jelajahi Menu Materi, Flashcard, atau mainkan Kuis Interaktif yang tetap siap dimainkan kapan saja!
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', errorMsgHtml);
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+    </script>
+</body>
+</html>
